@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libonig-dev \
     zip \
     unzip \
+    libzip-dev \
+    libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
        pdo \
@@ -20,8 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
        exif \
        pcntl \
        bcmath \
-       gd \
-       opcache \
+    && docker-php-ext-install intl zip opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
